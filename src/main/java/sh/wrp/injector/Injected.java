@@ -1,4 +1,4 @@
-package dev.nstruck.injector;
+package sh.wrp.injector;
 
 /**
  * Any constructor tagged with this annotation will be injected
