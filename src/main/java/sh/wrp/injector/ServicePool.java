@@ -1,5 +1,7 @@
 package sh.wrp.injector;
 
+import sh.wrp.injector.pools.BasicServicePool;
+
 public interface ServicePool<T extends ServicePool>  {
 
     /**
@@ -21,10 +23,18 @@ public interface ServicePool<T extends ServicePool>  {
     <I> T addSingleton(I instance);
 
     /**
+     * Get an instance by its class from the service pool
+     *
+     * @param clazz the class you want to get
+     * @param <I> the instance
+     */
+    <I> I get(Class<I> clazz);
+
+    /**
      * Resolves the Service Pool by injecting the class instances
      *
      * @return the {@link ServicePool} instance
      */
-    T resolve();
+    T inject();
 
 }

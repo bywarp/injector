@@ -32,7 +32,13 @@ public class BasicServicePool implements ServicePool<BasicServicePool> {
     }
 
     @Override
-    public BasicServicePool resolve() {
+    public <I> I get(Class<I> clazz) {
+        Object o = this.instances.get(clazz);
+        return (I)o;
+    }
+
+    @Override
+    public BasicServicePool inject() {
         while (this.instances.size() != this.services.size()) {
             for (Class<?> service : this.services) {
                 if (this.instances.containsKey(service)) continue;
@@ -65,7 +71,6 @@ public class BasicServicePool implements ServicePool<BasicServicePool> {
                 }
             }
         }
-
         return this;
     }
 }

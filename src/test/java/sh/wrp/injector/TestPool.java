@@ -1,5 +1,6 @@
 package sh.wrp.injector;
 
+import com.sun.source.tree.PackageTree;
 import sh.wrp.injector.impl.NestedService;
 import sh.wrp.injector.pools.BasicServicePool;
 import sh.wrp.injector.impl.DependingService;
@@ -15,12 +16,12 @@ public class TestPool implements IPool {
     }
 
     public TestPool() {
-        new BasicServicePool()
+        ServicePool pool = new BasicServicePool()
                 .<INestedService>addScoped(NestedService.class)
                 .<ISimpleService>addScoped(SimpleService.class)
                 .<IDependingService>addScoped(DependingService.class)
                 .<IPool>addSingleton(this)
-                .resolve();
+                .inject();
     }
 
 }
