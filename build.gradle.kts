@@ -3,7 +3,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "dev.nstruck"
+group = "sh.wrp"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -16,6 +16,11 @@ dependencies {
 }
 
 publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
     repositories {
         maven {
             url = uri("https://maven.pkg.github.com/bywarp/injector")
